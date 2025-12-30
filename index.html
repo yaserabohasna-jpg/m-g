@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>علبة ذكريات رومانسية</title>
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+}
+
+.page {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+}
+
+.active {
+    display: flex;
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    animation: bgAnim 10s infinite alternate;
+}
+
+@keyframes bgAnim {
+    0% { filter: hue-rotate(0deg); }
+    50% { filter: hue-rotate(45deg); }
+    100% { filter: hue-rotate(0deg); }
+}
+
+.box {
+    position: relative;
+    background: linear-gradient(135deg, #ff758c, #ff4f7a);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(255,79,122,0.6);
+    z-index: 2;
+    transform: scale(0);
+    animation: pulseScale 1s forwards;
+    max-width: 600px;
+}
+
+@keyframes pulseScale {
+    0% { transform: scale(0); opacity:0; }
+    60% { transform: scale(1.1); opacity:1; }
+    100% { transform: scale(1); }
+}
+
+.text {
+    font-size: 22px;
+    max-width: 500px;
+    margin-bottom: 30px;
+    min-height: 120px;
+    white-space: pre-line;
+    line-height: 1.8;
+}
+
+.nextBtn {
+    background: linear-gradient(135deg, #ffe066, #ff9f43);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #3b1f2b;
+    box-shadow: 0 5px 20px rgba(255,159,67,0.5);
+    transition: transform 0.3s;
+}
+
+.nextBtn:hover {
+    transform: scale(1.05);
+}
+
+/* شاشة النهاية */
+#finalScreen {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,#ff758c,#ff4f7a);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* قلب متوسط في المنتصف */
+.heart {
+    width: 80px;
+    height: 80px;
+    background: red;
+    transform: rotate(-45deg);
+    position: relative;
+    animation: heartBeat 1s infinite alternate;
+    z-index: 2;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: red;
+    border-radius: 50%;
+}
+
+.heart::before { top: -40px; left: 0; }
+.heart::after { left: 40px; top: 0; }
+
+@keyframes heartBeat {
+    0% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.2); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+/* جزيئات ضوء ناعمة */
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-600px) scale(0.5); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- الصفحات -->
+<div class="page active" id="page0">
+    <div class="background" style="background: linear-gradient(135deg,#ffccd5,#ffb3c1);"></div>
+    <div class="box">
+        <div class="text" id="text0"></div>
+        <button class="nextBtn" onclick="nextPage()">همسة</button>
+    </div>
+</div>
+
+<div class="page" id="page1">
+    <div class="background" style="background: linear-gradient(135deg,#c3b1ff,#d9ccff);"></div>
+    <div class="box">
+        <div class="text" id="text1"></div>
+        <button class="nextBtn" onclick="nextPage()">لحظة</button>
+    </div>
+</div>
+
+<div class="page" id="page2">
+    <div class="background" style="background: linear-gradient(135deg,#ffe066,#ff9f43);"></div>
+    <div class="box">
+        <div class="text" id="text2"></div>
+        <button class="nextBtn" onclick="nextPage()">أمان</button>
+    </div>
+</div>
+
+<div class="page" id="page3">
+    <div class="background" style="background: linear-gradient(135deg,#ffdfba,#ffd1a3);"></div>
+    <div class="box">
+        <div class="text" id="text3"></div>
+        <button class="nextBtn" onclick="nextPage()">دفء</button>
+    </div>
+</div>
+
+<div class="page" id="page4">
+    <div class="background" style="background: linear-gradient(135deg,#a3e0ff,#66ccff);"></div>
+    <div class="box">
+        <div class="text" id="text4"></div>
+        <button class="nextBtn" onclick="nextPage()">سعادة</button>
+    </div>
+</div>
+
+<div class="page" id="page5">
+    <div class="background" style="background: linear-gradient(135deg,#ffe6cc,#ffd1a3);"></div>
+    <div class="box">
+        <div class="text" id="text5"></div>
+        <button class="nextBtn" onclick="nextPage()">حكاية</button>
+    </div>
+</div>
+
+<div class="page" id="page6">
+    <div class="background" style="background: linear-gradient(135deg,#ff4f7a,#ff758c);"></div>
+    <div class="box">
+        <div class="text" id="text6"></div>
+        <button class="nextBtn" onclick="showFinalScreen()">النهاية</button>
+    </div>
+</div>
+
+<!-- شاشة النهاية المركزة -->
+<div id="finalScreen" class="page">
+    <div class="heart"></div>
+</div>
+
+<script>
+const messages = [
+`بصراحة، بحبك أكتر من أي حاجة في حياتي ❤️
+وكل يوم بحس قلبي مرتاح معاك.`,
+`ضحكتك وروحك الحلوة بتخلّي كل يوم أحلى 🌸`,
+`انتي قوية وبتقدري تعملي أي حاجة، وفخور بيكي جدًا 💪`,
+`مش بس حلوة، كمان مميزة وقلبك كبير. أنا دايمًا فخور بيكي 💖`,
+`لما تحسي بتعب أو ضيق، تذكري اني دايمًا هنا.
+هديكي كل الحب والراحة 🌷`,
+`كل حاجة فيكي مميزة… ضحكتك، وجودك… أنا بحب كل جزء فيكي 💫`,
+`ده قلبي كله ليكي… كل نبضة بتحمّل حب وحنان ليكي ❤️
+كل يوم بلاقي فيكي حاجة أجمل، وكل لحظة جنبك بتخلّي حياتي مليانة فرح.
+أنا موجود… هديكي كل الحب والدفء والأمان بلا حدود.
+قلبي ملكك وحدك 🌹`
+];
+
+let currentPage = 0;
+
+function typeWriter(text, element, i=0){
+    if(i < text.length){
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(()=>typeWriter(text, element, i), 50);
+    }
+}
+
+function nextPage(){
+    const pages = document.getElementsByClassName('page');
+    pages[currentPage].classList.remove('active');
+    currentPage++;
+    if(currentPage < pages.length){
+        pages[currentPage].classList.add('active');
+        const txtElement = document.getElementById('text'+currentPage);
+        txtElement.innerHTML = "";
+        typeWriter(messages[currentPage], txtElement);
+    }
+}
+
+// بدء أول صفحة
+window.onload = function(){
+    const txtElement = document.getElementById('text0');
+    typeWriter(messages[0], txtElement);
+}
+
+// شاشة النهاية المركزة
+function showFinalScreen(){
+    const pages = document.getElementsByClassName('page');
+    for(let i=0;i<pages.length;i++){
+        pages[i].classList.remove('active');
+    }
+
+    const final = document.getElementById('finalScreen');
+    final.style.display = 'flex';
+
+    // إضافة جزيئات ضوء ناعمة
+    for(let i=0;i<40;i++){
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        p.style.left = Math.random()*100 + 'vw';
+        p.style.top = Math.random()*100 + 'vh';
+        p.style.width = p.style.height = (2 + Math.random()*5) + 'px';
+        p.style.animationDuration = (5 + Math.random()*5) + 's';
+        final.appendChild(p);
+    }
+}
+</script>
+
+</body>
+</html>
